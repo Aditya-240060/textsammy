@@ -17,6 +17,7 @@ DATABASE_URL = "sqlite:///./summaries.db"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 
 class SummaryRecord(SQLModel, table=True):
+    __table_args__ = {'extend_existing': True}
     id: Optional[int] = Field(default=None, primary_key=True)
     text_hash: str = Field(index=True)
     original_text: str
